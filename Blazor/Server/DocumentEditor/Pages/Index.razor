@@ -1,0 +1,98 @@
+﻿@page "/"
+
+@using Syncfusion.Blazor.Buttons;
+@using Syncfusion.Blazor.DocumentEditor;
+@using System.Text.Json
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.Popups
+
+<div class="control-section">
+    <div>
+        <div>
+            <SfDocumentEditorContainer UseDefaultEditor="false" Width="1000px" Height="590px"> 
+                <SfDocumentEditor @ref="documentEditor">
+                    <DocumentEditorEvents Created="LoadDocument" BeforeFormFieldFill="BeforeFormFill"></DocumentEditorEvents>
+                </SfDocumentEditor>
+            </SfDocumentEditorContainer>
+        </div>
+    </div>
+</div>
+
+<SfDialog AllowPrerender="true" IsModal="true" @bind-Visible="showSignatureDialog" AllowDragging=true CloseOnEscape="true" Height="300px" Width="600px">
+    <DialogTemplates>
+        <Header>
+            Signature
+        </Header>
+        <Content>
+            @if(isOpen) {
+                <SfSignature @ref="signature" IsReadOnly="false" style="height:100%; width: 100%;"></SfSignature>
+            }
+        </Content>
+    </DialogTemplates>
+    <DialogButtons>
+        <DialogButton CssClass="e-flat" Content="OK" IsPrimary="true" OnClick="@InsertSignature"></DialogButton>
+        <DialogButton CssClass="e-flat" Content="Cancel" IsPrimary="true" OnClick="@CloseDialog"></DialogButton>
+    </DialogButtons>
+    <DialogEvents Opened="@OnOpenHandler" Closed="@DialogClosed"></DialogEvents>
+</SfDialog>
+
+@code {
+    SfDocumentEditor? documentEditor;
+
+    SfSignature? signature;
+
+    bool isOpen = false;
+
+    bool showSignatureDialog = false;
+
+    public async void InsertSignature()
+    {
+        await documentEditor.Selection.SelectFieldAsync();
+        string image = await signature.GetSignatureAsync(SignatureFileType.Png);
+        await documentEditor.Editor.InsertImageAsync(image, 150, 30);
+        showSignatureDialog = false;
+        StateHasChanged();
+    }
+
+
+    public void BeforeFormFill(FormFieldFillEventArgs args)
+    {
+        // Check whether form field name match the signature field.
+        if (args.FieldName == "signature")
+        {
+            //Cancel form field fill.
+            args.IsCanceled = true;
+            showSignatureDialog = true;
+            StateHasChanged();
+        }
+    }
+
+    private void OnOpenHandler(Syncfusion.Blazor.Popups.OpenEventArgs args)
+    {
+        isOpen = true;
+    }
+
+    private void DialogClosed(CloseEventArgs args)
+    {
+        isOpen = false;
+    }
+
+    private void CloseDialog()
+    {
+        showSignatureDialog = false;
+        StateHasChanged();
+    }
+
+    private async void LoadDocument()
+    {
+        string filePath = "wwwroot/data/Form Fields.docx";
+        using (FileStream fileStream = new FileStream(filePath, System.IO.FileMode.Open, System.IO.FileAccess.Read))
+        {
+            WordDocument document = WordDocument.Load(fileStream, ImportFormatType.Docx);
+            string json = JsonSerializer.Serialize(document);
+            document.Dispose();
+            await documentEditor.OpenAsync(json);
+        }
+    }
+}
+
