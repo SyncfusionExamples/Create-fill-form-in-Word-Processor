@@ -1,14 +1,14 @@
-# Create fillable form and fill form in Syncfusion® Web Word Processor
+# Create fillable form and fill form in Blazor DOCX Editor (Document Editor)
 
-This repository provides a working example of how to create and fill interactive forms in the Syncfusion® Document Editor (a.k.a. Word Processor) component.
+This repository provides a working example of how to create and fill interactive forms in Syncfusion<sup style="font-size:70%">&reg;</sup> [Blazor DOCX Editor](https://www.syncfusion.com/docx-editor-sdk/blazor-docx-editor?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples) (Document Editor).
 
 # Resources 
 
-- **Product page:**  [Syncfusion® Balzor Word Processor](https://www.syncfusion.com/blazor-components/blazor-docx-editor) 
+- **Product page:**  [Syncfusion® Balzor DOCX Editor](https://www.syncfusion.com/blazor-components/blazor-docx-editor?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples) 
 
-- **Documentation:**  [Syncfusion® Word Processor](https://help.syncfusion.com/document-processing/word/word-processor/blazor/overview) 
+- **Documentation:**  [Syncfusion® DOCX Editor](https://help.syncfusion.com/document-processing/word/word-processor/blazor/overview?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples) 
 
-- **Online demo:**  [Syncfusion® Word Processor - Demo](https://blazor.syncfusion.com/demos/document-editor/default-functionalities?theme=fluent2) 
+- **Online demo:**  [Syncfusion® DOCX Editor - Demo](https://blazor.syncfusion.com/demos/document-editor/default-functionalities?theme=fluent2?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples) 
 
 # Support and feedback 
 
@@ -19,5 +19,3 @@ Request new feature through [Syncfusion® feedback portal](https://www.syncfusi
 # License 
 
 This is a commercial product and requires a paid license for possession or use. Syncfusion's licensed software, including this component, is subject to the terms and conditions of [Syncfusion's EULA](https://www.syncfusion.com/license/studio/22.2.5/syncfusion_essential_studio_eula.pdf?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples). You can purchase a license [here](https://www.syncfusion.com/sales/products?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples) or start a free 30\-day trial [here](https://www.syncfusion.com/account/manage-trials/start-trials?utm_source=github&utm_medium=listing&utm_campaign=github-github-documenteditor-examples). 
-
-
